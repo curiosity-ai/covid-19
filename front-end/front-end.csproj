@@ -8,7 +8,7 @@
     <None Remove="src\assets\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Mosaik.UI" Version="0.0.6154" />
+    <PackageReference Include="Mosaik.UI" Version="0.0.7155" />
     <PackageReference Include="Bridge" Version="17.10.1" />
     <PackageReference Include="Bridge.Core" Version="17.10.1" />
   </ItemGroup>

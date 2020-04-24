@@ -12,7 +12,7 @@ namespace Covid
     {
         private Stack _MainStack;
 
-        public HomeView()
+        public HomeView(Parameters state)
         {
             var message = @"<span class='tss-fontsize-small'><span>This is a free search system provided by Curiosity for public use. The data you can explore here is from the </span><a href='https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset' target='_blank'>COVID-19 Open Research Dataset Challenge (CORD-19)</a><span> Kaggle challenge, but is not related to the original challenge authors.</span><br/><br/><span>It uses our AI-enabled graph and search technology to enable you to explore the dataset using machine-learning-based synonyms and find similar papers using graph embeddings.</span><br/><br/><span>This system is provided free of charge, without any warranty, either expressed or implied. Licenses for the underlying papers are noted in the individual references.</span><span> If you want your own account to explore the data, or more information, get in touch under </span><a href='mailto://hello@curiosity.ai' target='_blank'>hello@curiosity.ai</a><span> or follow us </span><a href='https://twitter.com/curiosity_ai' target='_blank'>on twitter.</a></span>";
 

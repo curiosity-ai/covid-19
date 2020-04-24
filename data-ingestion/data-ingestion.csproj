@@ -12,10 +12,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Catalyst" Version="0.0.5377" />
-    <PackageReference Include="CsvHelper" Version="15.0.1" />
-    <PackageReference Include="Mosaik.Core" Version="0.0.5604" />
-    <PackageReference Include="Mosaik.Library" Version="0.0.6164" />
+    <PackageReference Include="Catalyst" Version="0.0.6972" />
+    <PackageReference Include="CsvHelper" Version="15.0.5" />
+    <PackageReference Include="Mosaik.Core" Version="0.0.6973" />
+    <PackageReference Include="Mosaik.Library" Version="0.0.7130" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 </Project>

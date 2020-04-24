@@ -25,31 +25,27 @@ namespace Covid
             return CardContent(Header(this, node), null, new Footer(null, NodeCardCommands.For(node)));
         }
 
-        public async Task<CardContent> PreviewAsync(Node node)
+        public async Task<CardContent> PreviewAsync(Node node, Parameters state)
         {
             // This method is used to render the modal preview. 
             // You can also do your own preview handling, in this case return null instead.
-            return CardContent(Header(this, node), CreateView(node), null);
+            return CardContent(Header(this, node), CreateView(node), null).PreviewWidth(60.vw()).PreviewHeight(60.vh()); ;
         }
 
         public async Task<IComponent> ViewAsync(Node node, Parameters state)
         {
             // This method is used to render the full page for this node, i.e. when navigating to /Journal/node_unique_identifier
             // Usually you can re-use the PreviewAsync method, unless you want to have different views being rendered
-            return (await PreviewAsync(node)).Merge();
+            return (await PreviewAsync(node, state)).Merge().Stretch();
         }
 
         private IComponent CreateView(Node node)
         {
             // To access properties of the node, you can strongly-typed methods such as node.GetString("stringFieldName") or node.GetInt("intFieldName")
             // For accessing the possible 'Label Fields' of the node, use: Labels.Get(node, LabelField);
-            return Stack()
-                    .WidthStretch()
-                    .Children(
-                         Pivot().Height(80.vh())
-                            .Pivot("authors",      () => Button("Authors").Link().Primary(),      () => Neighbors(() => API.Query.StartAt(node.UID).Out(Schema.N.Paper, Schema.E.HasPaper).Out(Schema.N.Author, Schema.E.HasAuthor).GetUIDsAsync(), new[] { Schema.N.Author }, true, FacetDisplayOptions.PopupWithButtonIconOnly))
-                            .Pivot("publications", () => Button("Publications").Link().Primary(), () => Neighbors(() => API.Query.StartAt(node.UID).Out(Schema.N.Paper, Schema.E.HasPaper).GetUIDsAsync(), new[] { Schema.N.Paper }, true, FacetDisplayOptions.PopupWithButtonIconOnly))
-                            );
+            return Pivot().Stretch()
+                    .Pivot("authors",      () => Button("Authors").Link().Primary(),      () => Neighbors(() => API.Query.StartAt(node.UID).Out(Schema.N.Paper, Schema.E.HasPaper).Out(Schema.N.Author, Schema.E.HasAuthor).GetUIDsAsync(), new[] { Schema.N.Author }, true, FacetDisplayOptions.PopupWithButtonIconOnly).Stretch())
+                    .Pivot("publications", () => Button("Publications").Link().Primary(), () => Neighbors(() => API.Query.StartAt(node.UID).Out(Schema.N.Paper, Schema.E.HasPaper).GetUIDsAsync(), new[] { Schema.N.Paper }, true, FacetDisplayOptions.PopupWithButtonIconOnly).Stretch());
         }
     }
 }

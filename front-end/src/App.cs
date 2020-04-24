@@ -7,7 +7,6 @@ using Mosaik.Schema;
 using Mosaik.Views;
 using static Tesserae.UI;
 using static Mosaik.Components.UI;
-using Mosaik.UI.Core;
 using Mosaik.Settings;
 
 namespace Covid
@@ -28,7 +27,8 @@ namespace Covid
             // Check the ISettings interface for more details of what can be configured
 
             settings.DefaultLanguage  = Language.English;
-            settings.CustomHome = () => new HomeView();
+
+            settings.HomeView = (state) => new HomeView(state);
 
             settings.Login.GuestUserName = "guest";
             settings.Login.GuestPassword = "guestpassword";
@@ -36,10 +36,8 @@ namespace Covid
             settings.Login.Brand = Div(_("d-inline-block text-center text-primary"), SetStyle(Image(_("pl-4", src: "./assets/img/virus.svg")), s => s.width = s.height = "10rem"), H2(_("font-weight-bold pt-4", text: "COVID-19 Papers")), Div(_("pt-5 text-muted "), Span(_(text:"If you don't have an account yet, you can log in as a guest by clicking the link below.")), Br(_()), Br(_()), Span(_(text:"For your own private account, reach out to us at ")), A(_(text: "hello@curiosity.ai", href:"mailto://hello@curiosity.ai"))));
 
             settings.Navbar.Brand = Span(_(), SetStyle(Image(_("mr-2", src: "./assets/img/virus.svg")), s => { s.width = "28px"; s.height = "28px"; }), Span(_(text: "COVID-19 Papers")));
-            settings.Search.DefaultIgnoreTypes = new[] { "_Token", "_Abbreviation", "_Notification", "_User", "_AccessGroup", "_RestrictionGroup", "_Topic", "_TopicRule", "_TopicAnalysis" };
-            settings.Search.SaveViewsOf = new [] { Schema.N.Paper, Schema.N.Author, Schema.N.Affiliation };
 
-            settings.Search.DefaultRelatedFacets = new[] { Schema.N.Author, Schema.N.Affiliation, Schema.N.Location, Schema.N.Journal, "_Topic", Schema.N.Disease };
+            settings.Search.PossibleRelatedToAbbreviations = new[] { new App.RelatedFilter(Schema.N.Paper) };
 
             settings.Sidebar.Teams             = false;
             settings.Sidebar.MyFiles           = false;
@@ -47,6 +45,8 @@ namespace Covid
             settings.Sidebar.UploadFile        = false;
             settings.Sidebar.Analysis          = false;
             settings.Sidebar.Settings          = false;
+
+            Mosaik.External.Analytics.GoogleAnalytics.Enable("UA-161417730-1");
         }
 
         private static void OnLoad()

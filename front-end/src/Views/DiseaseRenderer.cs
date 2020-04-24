@@ -25,18 +25,18 @@ namespace Covid
             return CardContent(Header(this, node), null, new Footer(null, NodeCardCommands.For(node)));
         }
 
-        public async Task<CardContent> PreviewAsync(Node node)
+        public async Task<CardContent> PreviewAsync(Node node, Parameters state)
         {
             // This method is used to render the modal preview. 
             // You can also do your own preview handling, in this case return null instead.
-            return CardContent(Header(this, node), CreateView(node), null);
+            return CardContent(Header(this, node), CreateView(node), null).PreviewWidth(60.vw()).PreviewHeight(60.vh()); ;
         }
 
         public async Task<IComponent> ViewAsync(Node node, Parameters state)
         {
             // This method is used to render the full page for this node, i.e. when navigating to /Author/node_unique_identifier
             // Usually you can re-use the PreviewAsync method, unless you want to have different views being rendered
-            return (await PreviewAsync(node)).Merge();
+            return (await PreviewAsync(node, state)).Merge().Stretch();
         }
 
         private IComponent CreateView(Node node)
@@ -46,15 +46,13 @@ namespace Covid
 
             var link= string.IsNullOrEmpty(node.GetString("Id")) ? (IComponent)TextBlock("") : Link(node.GetString("Id"), Button("Open").Link().SetIcon(LineAwesome.ExternalLinkAlt)).OpenInNewTab();
 
-            return Stack()
-                    .WidthStretch()
-                    .Children(
+            return Stack().Stretch().Children(
                          Label("DOID Link").Inline().SetMinLabelWidth(120.px()).SetContent(link),
                          Label("Synonyms").Inline().SetMinLabelWidth(120.px()).SetContent(OverflowSet().Items(node.UnsafeGetAs<ReadOnlyArray<string>>("Synonyms").Select(s => TextBlock(s).PaddingRight(8.px())).ToArray())),
                          Label("XRefs").Inline().SetMinLabelWidth(120.px()).SetContent(OverflowSet().Items(node.UnsafeGetAs<ReadOnlyArray<string>>("XRefs").Select(s => TextBlock(s).PaddingRight(8.px())).ToArray())),
-                         Pivot().Height(80.vh())
-                            .Pivot("publications", () => Button("Publications").Link().Primary(), () => Neighbors(() => API.Query.StartAt(node.UID).Out(Schema.N.Paper, Schema.E.DiseaseAppearsIn).GetUIDsAsync(), new[] { Schema.N.Paper }, true, FacetDisplayOptions.PopupWithButtonIconOnly))
-                            .Pivot("authors",      () => Button("Authors").Link().Primary(),      () => Neighbors(() => API.Query.StartAt(node.UID).Out(Schema.N.Paper, Schema.E.DiseaseAppearsIn).Out(Schema.N.Author, Schema.E.HasAuthor).GetUIDsAsync(), new[] { Schema.N.Author }, true, FacetDisplayOptions.PopupWithButtonIconOnly))
+                         Pivot().Height(100.px()).Grow()
+                            .Pivot("publications", () => Button("Publications").Link().Primary(), () => Neighbors(() => API.Query.StartAt(node.UID).Out(Schema.N.Paper, Schema.E.DiseaseAppearsIn).GetUIDsAsync(), new[] { Schema.N.Paper }, true, FacetDisplayOptions.PopupWithButtonIconOnly).Stretch())
+                            .Pivot("authors",      () => Button("Authors").Link().Primary(),      () => Neighbors(() => API.Query.StartAt(node.UID).Out(Schema.N.Paper, Schema.E.DiseaseAppearsIn).Out(Schema.N.Author, Schema.E.HasAuthor).GetUIDsAsync(), new[] { Schema.N.Author }, true, FacetDisplayOptions.PopupWithButtonIconOnly).Stretch())
                             );
 
         }

@@ -28,7 +28,7 @@ namespace Covid
 
         public static async Task Papers(string token, string server, string folder)
         {
-            var csvFile   = Path.Combine(folder, @"\2020-03-13\all_sources_metadata_2020-03-13.csv");
+            var csvFile   = Path.Combine(folder, @"metadata.csv");
             if (!File.Exists(csvFile)) 
             {
                 Console.WriteLine("Error --------------");
@@ -37,7 +37,7 @@ namespace Covid
                 return;
             }
 
-            var shaToFile = Directory.EnumerateFiles(Path.Combine(folder, @"\2020-03-13\"), "*.json", new EnumerationOptions() { RecurseSubdirectories = true })
+            var shaToFile = Directory.EnumerateFiles(folder, "*.json", new EnumerationOptions() { RecurseSubdirectories = true })
                                      .ToDictionary(f => Path.GetFileNameWithoutExtension(f), f => f);
 
 
@@ -139,6 +139,7 @@ namespace Covid
 
                             if (author is null || author.Length < 4) continue;
                             var parts = author.Split(new[] { ',' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                            if (parts.Length < 1) continue;
                             string first, last, middle;
 
                             if (parts.Length == 1)
@@ -150,7 +151,7 @@ namespace Covid
                             else
                             {
                                 first = parts[0];
-                                last = parts[1].Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries).First();
+                                last = parts[1].Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? "";
                                 middle = parts[1].Substring(parts[1].IndexOf(last) + last.Length);
                             }
 

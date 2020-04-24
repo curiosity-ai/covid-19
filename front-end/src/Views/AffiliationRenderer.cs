@@ -25,7 +25,7 @@ namespace Covid
             return CardContent(Header(this, node), null, new Footer(null, NodeCardCommands.For(node)));
         }
 
-        public async Task<CardContent> PreviewAsync(Node node)
+        public async Task<CardContent> PreviewAsync(Node node, Parameters state)
         {
             // This method is used to render the modal preview. 
             // You can also do your own preview handling, in this case return null instead.
@@ -36,15 +36,14 @@ namespace Covid
         {
             // This method is used to render the full page for this node, i.e. when navigating to /Affiliation/node_unique_identifier
             // Usually you can re-use the PreviewAsync method, unless you want to have different views being rendered
-            return (await PreviewAsync(node)).Merge();
+            return (await PreviewAsync(node, state)).Merge().Stretch();
         }
 
         private IComponent CreateView(Node node)
         {
             // To access properties of the node, you can strongly-typed methods such as node.GetString("stringFieldName") or node.GetInt("intFieldName")
             // For accessing the possible 'Label Fields' of the node, use: Labels.Get(node, LabelField);
-            return Stack()
-                    .WidthStretch()
+            return Stack().Stretch()
                     .Children(
                          Label("Location").Inline().SetContent(NeighborsAsLabels(node.UID, Schema.N.Location, Schema.E.LocatedIn)),
                          Pivot().Height(80.vh())
