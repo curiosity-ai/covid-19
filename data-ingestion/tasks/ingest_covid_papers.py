@@ -3,8 +3,9 @@ import json
 import os
 from os import path
 
-from pymosaik import Mosaik
 from tqdm import tqdm
+
+from pymosaik import Mosaik
 
 from tasks.schema_helper import create_graph_schema
 

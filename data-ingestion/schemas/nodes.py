@@ -1,7 +1,6 @@
 from datetime import datetime
 
-from pymosaik import Node, Key, Field
-from pymosaik import SchemaFieldType
+from pymosaik import Node, Key, Field, ListField
 from pymosaik.mosaik_types import FieldType
 
 
@@ -27,55 +26,55 @@ class Paper(Node):
     def Doi(self):
         return self._Doi
 
-    @Field(FieldType.Time, SchemaFieldType.Field)
+    @Field(FieldType.Time)
     def PublishTime(self):
         return self._PublishTime
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Sha(self):
         return self._Sha
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Source(self):
         return self._Source
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Title(self):
         return self._Title
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def License(self):
         return self._License
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Abstract(self):
         return self._Abstract
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def FullText(self):
         return self._FullText
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Authors(self):
         return self._Authors
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Journal(self):
         return self._Journal
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Pmcid(self):
         return self._Pmcid
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def PubmedId(self):
         return self._PubmedId
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def MicrosoftAcademicPaperID(self):
         return self._MicrosoftAcademicPaperID
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def WHOCovidence(self):
         return self._WHOCovidence
 
@@ -119,23 +118,23 @@ class Author(Node):
     def FullName(self):
         return " ".join([self.First()] + self.Middle() + [self.Last()])
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def First(self):
         return self._First
 
-    @Field(FieldType.String, SchemaFieldType.ListField)
+    @ListField(FieldType.String)
     def Middle(self):
         return self._Middle
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Last(self):
         return self._Last
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Suffix(self):
         return self._Suffix
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Email(self):
         return self._Email
 
@@ -150,11 +149,11 @@ class Affiliation(Node):
     def FullName(self):
         return f"{self.Laboratory()}, {self.Institution()}".strip().strip(",")
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Laboratory(self):
         return self._Laboratory
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Institution(self):
         return self._Institution
 
@@ -168,11 +167,11 @@ class Location(Node):
     def FullName(self):
         return f"{self.Settlement()}, {self.Country()}".strip().strip(",")
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Settlement(self):
         return self._Settlement
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Country(self):
         return self._Country
 
@@ -198,14 +197,14 @@ class Disease(Node):
     def Id(self):
         return self._Id
 
-    @Field(FieldType.String, SchemaFieldType.Field)
+    @Field(FieldType.String)
     def Label(self):
         return self._Label
 
-    @Field(FieldType.String, SchemaFieldType.ListField)
+    @ListField(FieldType.String)
     def XRefs(self):
         return self._XRefs
 
-    @Field(FieldType.String, SchemaFieldType.ListField)
+    @ListField(FieldType.String)
     def Synonyms(self):
         return self._Synonyms
