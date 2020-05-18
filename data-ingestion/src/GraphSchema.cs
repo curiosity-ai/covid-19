@@ -27,7 +27,7 @@ namespace Covid.Schemas
     public class Paper
     {
         [Key] public string Doi { get; set; }
-        [Timestamp] public DateTimeOffset PublishTime { get; set; }
+        [Timestamp] public DateTime PublishTime { get; set; }
         [Property] public string Sha { get; set; }
         [Property] public string Source { get; set; }
         [Property] public string Title { get; set; }

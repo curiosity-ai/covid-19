@@ -235,23 +235,23 @@ namespace Covid
             await graph.Schema.ExistsAsync<Disease>(SchemaCreationMode.CreateOnly);
         }
 
-        private static DateTimeOffset ParseDate(string publish_time)
+        private static DateTime ParseDate(string publish_time)
         {
             if(publish_time.Length == 4)
             {
-                return DateTimeOffset.ParseExact(publish_time, "yyyy", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact(publish_time, "yyyy", CultureInfo.InvariantCulture);
             }
             else if (string.IsNullOrWhiteSpace(publish_time))
             {
-                return DateTimeOffset.FromUnixTimeSeconds(0);
+                return DateTimeOffset.FromUnixTimeSeconds(0).UtcDateTime;
             }
-            else if (DateTimeOffset.TryParse(publish_time, out var date))
+            else if (DateTime.TryParse(publish_time, out var date))
             {
                 return date;
             }
             else
             {
-                return DateTimeOffset.FromUnixTimeSeconds(0);
+                return DateTimeOffset.FromUnixTimeSeconds(0).UtcDateTime;
             }
         }
 
