@@ -1,27 +1,35 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="src\assets\**" />
-    <EmbeddedResource Remove="src\assets\**" />
-    <None Remove="src\assets\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Mosaik.UI" Version="0.0.7633" />
-    <PackageReference Include="Bridge" Version="17.10.1" />
-    <PackageReference Include="Bridge.Core" Version="17.10.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="assets\img\virus.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\img\virus.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+﻿<Project Sdk="h5.Target/0.0.8111">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(Configuration)==Release">
-    <Exec Command="dotnet tool update mosaik.cli -g&#xD;&#xA;mosaik upload-front-end --server https://covid.curiosity.ai/api/ --token auto --path $(OutDir)\bridge" />
-  </Target>
+    <ItemGroup>
+        <Compile Remove="src\assets\**" />
+        <EmbeddedResource Remove="src\assets\**" />
+        <None Remove="src\assets\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="h5" Version="0.0.8032" />
+        <PackageReference Include="h5.Core" Version="0.0.8007" />
+        <PackageReference Include="h5.Tesserae" Version="0.0.8004" />
+        <PackageReference Include="h5.Newtonsoft.Json" Version="0.0.7982" />
+        <PackageReference Include="Plotly.h5" Version="0.0.8070" />
+        <PackageReference Include="Mosaik.FrontEnd.Core" Version="0.0.8078" />
+        <PackageReference Include="Mosaik.FrontEnd.API" Version="0.0.8078" />
+        <PackageReference Include="Mosaik.FrontEnd" Version="0.0.8078" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="assets\img\virus.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="assets\img\virus.svg">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(Configuration)==Release">
+        <Exec Command="dotnet tool update mosaik.cli -g&#xD;&#xA;mosaik upload-front-end --server https://covid.curiosity.ai/api/ --token auto --path $(OutDir)\h5" />
+    </Target>
 </Project>

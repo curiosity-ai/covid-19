@@ -3,7 +3,7 @@ using Mosaik.Schema;
 using System;
 using Tesserae;
 using Tesserae.Components;
-using static Retyped.dom;
+using static H5.Core.dom;
 using static Tesserae.UI;
 
 namespace Covid
