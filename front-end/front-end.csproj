@@ -12,7 +12,7 @@
     <ItemGroup>
         <PackageReference Include="h5" Version="0.0.8032" />
         <PackageReference Include="h5.Core" Version="0.0.8007" />
-        <PackageReference Include="h5.Tesserae" Version="0.0.8004" />
+        <PackageReference Include="Tesserae" Version="0.0.8517" />
         <PackageReference Include="h5.Newtonsoft.Json" Version="0.0.7982" />
         <PackageReference Include="Plotly.h5" Version="0.0.8070" />
         <PackageReference Include="Mosaik.FrontEnd.Core" Version="0.0.8078" />
