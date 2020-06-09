@@ -7,15 +7,15 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20158.1" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20303.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Catalyst" Version="0.0.7630" />
+    <PackageReference Include="Catalyst" Version="0.0.8792" />
     <PackageReference Include="CsvHelper" Version="15.0.5" />
     <PackageReference Include="Mosaik.Core" Version="0.0.6973" />
-    <PackageReference Include="Mosaik.Library" Version="0.0.7533" />
+    <PackageReference Include="Mosaik.Library" Version="0.0.8115" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 </Project>

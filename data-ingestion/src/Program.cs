@@ -42,7 +42,7 @@ namespace Covid
 
 
             using (var graph = await Graph.WithServer(server, token).WithConsoleLogging().ConnectAsync())
-            using (var session = graph.OpenSession().AutoCommit(batchSize: 1000))
+            using (var session = graph.OpenSession().AutoCommit(batchSize: 10000))
             using (var reader = new StreamReader(csvFile))
             using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true, PrepareHeaderForMatch = (h,i) => FixHeader(h),  LineBreakInQuotedFieldIsBadData = false }))
             {
@@ -173,7 +173,7 @@ namespace Covid
         public static async Task Diseases(string token, string server, string file)
         {
             using (var graph = await Graph.WithServer(server, token).WithConsoleLogging().ConnectAsync())
-            using (var session = graph.OpenSession().AutoCommit(batchSize: 1000))
+            using (var session = graph.OpenSession().AutoCommit(batchSize: 5000))
             {
                 await CreateGraphSchema(graph);
 

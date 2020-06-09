@@ -1,4 +1,4 @@
-﻿<Project Sdk="h5.Target/0.0.8111">
+﻿<Project Sdk="h5.Target/0.0.8194">
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
@@ -10,14 +10,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="h5" Version="0.0.8032" />
-        <PackageReference Include="h5.Core" Version="0.0.8007" />
-        <PackageReference Include="Tesserae" Version="0.0.8517" />
-        <PackageReference Include="h5.Newtonsoft.Json" Version="0.0.7982" />
-        <PackageReference Include="Plotly.h5" Version="0.0.8070" />
-        <PackageReference Include="Mosaik.FrontEnd.Core" Version="0.0.8078" />
-        <PackageReference Include="Mosaik.FrontEnd.API" Version="0.0.8078" />
-        <PackageReference Include="Mosaik.FrontEnd" Version="0.0.8078" />
+        <PackageReference Include="h5" Version="0.0.8547" />
+        <PackageReference Include="h5.Core" Version="0.0.8545" />
+        <PackageReference Include="Tesserae" Version="0.0.8787" />
+        <PackageReference Include="h5.Newtonsoft.Json" Version="0.0.8546" />
+        <PackageReference Include="Plotly.h5" Version="0.0.8196" />
+        <PackageReference Include="Mosaik.FrontEnd.Core" Version="0.0.8842" />
+        <PackageReference Include="Mosaik.FrontEnd.API" Version="0.0.8842" />
+        <PackageReference Include="Mosaik.FrontEnd" Version="0.0.8842" />
     </ItemGroup>
 
     <ItemGroup>

@@ -15,10 +15,8 @@ namespace Covid
     {
         public static void Main()
         {
-            var apiURL = "https://covid.curiosity.ai/api";
-
-            // App.Initialize has to have this signature, as it is replaced by the server with the public address environment variable
-            App.Initialize("COVID-19 Papers", apiURL, Configure, OnLoad);
+            App.Name = "COVID-19 Papers";
+            App.Initialize(Configure, OnLoad);
         }
 
         private static void Configure(App.ISettings settings)
@@ -28,14 +26,13 @@ namespace Covid
 
             settings.DefaultLanguage  = Language.English;
 
-            settings.HomeView = (state) => new HomeView(state);
+            settings.HomeView = state => new HomeView(state);
 
             settings.Login.GuestUserName = "guest";
             settings.Login.GuestPassword = "guestpassword";
 
             settings.Login.Brand = Div(_("d-inline-block text-center text-primary"), SetStyle(Image(_("pl-4", src: "./assets/img/virus.svg")), s => s.width = s.height = "10rem"), H2(_("font-weight-bold pt-4", text: "COVID-19 Papers")), Div(_("pt-5 text-muted "), Span(_(text:"If you don't have an account yet, you can log in as a guest by clicking the link below.")), Br(_()), Br(_()), Span(_(text:"For your own private account, reach out to us at ")), A(_(text: "hello@curiosity.ai", href:"mailto://hello@curiosity.ai"))));
 
-            settings.Navbar.Brand = Span(_(), SetStyle(Image(_("mr-2", src: "./assets/img/virus.svg")), s => { s.width = "28px"; s.height = "28px"; }), Span(_(text: "COVID-19 Papers")));
 
             settings.Search.PossibleRelatedToAbbreviations = new[] { new App.RelatedFilter(Schema.N.Paper) };
 
