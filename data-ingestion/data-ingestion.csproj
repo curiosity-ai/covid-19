@@ -16,6 +16,6 @@
     <PackageReference Include="CsvHelper" Version="15.0.5" />
     <PackageReference Include="Mosaik.Core" Version="0.0.6973" />
     <PackageReference Include="Mosaik.Library" Version="0.0.8115" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 </Project>
